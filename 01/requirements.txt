@@ -1,0 +1,4 @@
+pandas==2.2.0
+redshift_connector
+fastparquet
+python-dotenv==0.21.1
