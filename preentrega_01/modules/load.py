@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 
-def load(file_out):
+def load(file_out, truncate):
     rs_username = os.getenv("REDSHIFT_USER")
     rs_password = os.getenv("REDSHIFT_PASSWORD")
     rs_database = os.getenv("REDSHIFT_DATABASE")
@@ -30,6 +30,9 @@ def load(file_out):
     insert_query = f"INSERT INTO {table} ({columns}) VALUES ({data})"
 
     try:
+        if truncate:
+            cursor.execute("TRUNCATE TABLE news")
+
         for index, row in df.iterrows():
             cursor.execute(insert_query, tuple(row))
         connection.commit()
