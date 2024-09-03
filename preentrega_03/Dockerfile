@@ -14,9 +14,6 @@ RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" \
 COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
-# .env
-COPY .env ./.env
-
 # Copy the DAGs folder
 COPY ./dags ${AIRFLOW_HOME}/dags
 

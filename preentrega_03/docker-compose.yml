@@ -1,0 +1,12 @@
+services:
+  airflow:
+    image: airflow-artorias
+    environment:
+      - REDSHIFT_USER=${REDSHIFT_USER}
+      - REDSHIFT_PASSWORD=${REDSHIFT_PASSWORD}
+      - REDSHIFT_DATABASE=${REDSHIFT_DATABASE}
+      - REDSHIFT_URL=${REDSHIFT_URL}
+      - REDSHIFT_PORT=${REDSHIFT_PORT}
+      - NEWS_API_KEY=${NEWS_API_KEY}
+    ports:
+      - '8080:8080'

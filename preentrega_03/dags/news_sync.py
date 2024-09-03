@@ -15,14 +15,14 @@ topic = "Cryptocurrency"
 out_data_stg_json = "/out_files/stg_news.json"
 out_data_csv = "/out_files/news.csv"
 
-clean_results_table = True
+clean_results_table = False
 
 # Define the DAG
 with DAG(
     dag_id="news_sync",
     start_date=datetime(2024, 8, 22),
     schedule_interval="30 0 * * *",
-    catchup=True,
+    catchup=False,
 ) as dag:
     extract = PythonOperator(
         task_id="extract",
@@ -54,5 +54,5 @@ with DAG(
             "truncate": clean_results_table,
         }
     )
-
-extract >> transform >> load
+    
+    extract >> transform >> load
